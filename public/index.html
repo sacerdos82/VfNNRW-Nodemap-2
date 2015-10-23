@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Stylesheets -->
+	<link href="css/all.css" rel="stylesheet">
+	
+	<title>VfN NRW | Nodemap 2.0</title>
+
+</head>
+
+<body>
+	
+	<div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-labelledby="modal-info">
+		<div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Über Nodemap 2.0</h4>
+	      		</div>
+		  		<div class="modal-body">			  					  					  		
+			  		<div>
+				  		Nodemap wurde als Kartenanwendung für die NodeAPI des Verbunds freier Netzwerke NRW e.V. entwickelt. 
+				  		Sie kann sowohl für den gesamten Verein, als auch nur für eine einzelne Freifunk Community verwendet werden.
+				  		Bei Fragen erreichst du mich über <span class="no-wrap">tobias(at)vfn-nrw.de</span> oder unter <a href="https://twitter.com/@sacerdos82" target="_blank">@sacerdos82</a> auf Twitter.
+			  		</div>
+	      		
+			  		<h5>Farbkodierungen</h5>
+	      		
+			  		<table class="table table-condensed">
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-uplink"></i></td>
+				  			<td>Knoten mit aktiven Uplink</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-gwq-good"></i></td>
+				  			<td>Knoten mit guter Verbindungsqualität (RAW größer 200)</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-gwq-average"></i></td>
+				  			<td>Knoten mit gerade noch akzeptabler Verbindungsqualität (RAW größer 100)</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-gwq-bad"></i></td>
+				  			<td>Knoten mit schlechter Verbindungsqualität (RAW kleiner 100) - Quasi unbenutzbar</td>
+		      			</tr>
+				  	</table>
+				  	
+				  	<table class="table table-condensed">
+					  	<tr>
+						  	<td colspan="2">
+								Bei aktiviertem "Clientanzahl" Layer wird zusätzlich zur Anzahl der Clients auf einem Knoten ein farbiger Kreis um den Knoten gelegt.
+								Dessen Dicke und Farbe geben schnell Aufschluss über die aktuelle Belastung des Geräts.
+						  	</td>
+					  	</tr>
+		      			<tr>
+			      			<td><i class="fa fa-dot-circle-o color-node-clients-good"></i></td>
+				  			<td>Knoten mit einer Clientanzahl unter 10</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-dot-circle-o color-node-clients-average"></i></td>
+				  			<td>Knoten mit einer Clientanzahl unter 20 aber über 10</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-dot-circle-o color-node-clients-bad"></i></td>
+				  			<td>Knoten mit einer Clientanzahl über 20</td>
+		      			</tr>
+				  	</table>
+				  	
+				  	<table class="table table-condensed">
+					  	<tr>
+						  	<td colspan="2">
+								Über die Layer "Neue Knoten" und "Verlorene Knoten" können Informationen über die Netzentwicklung angerufen werden.
+								Sie müssen manuell über die Seitenleiste eingeblendet werden.
+						  	</td>
+					  	</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-new"></i></td>
+				  			<td>Knoten der in den letzen 14 Tagen Teil des Netzes geworden ist</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-lost-1"></i></td>
+				  			<td>Knoten der länger als 14 Tage, aber weniger als 30 Tage offline ist</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-lost-2"></i></td>
+				  			<td>Knoten der länger als 30 Tage, aber weniger als 180 Tage offline ist</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-lost-3"></i></td>
+				  			<td>Knoten der länger als 180 Tage, aber weniger als 365 Tage offline ist</td>
+		      			</tr>
+		      			<tr>
+			      			<td><i class="fa fa-circle color-node-lost-4"></i></td>
+				  			<td>Knoten der länger als 365 Tage offline ist</td>
+		      			</tr>
+				  	</table>
+				  	
+				  	<div>
+					  	Die Meshverbindungen zwischen den einzelnen Knoten werden ebenfalls farblich je nach Qualität markiert. 
+					  	Auf eine explizite Auflistung möchte ich an dieser Stelle verzichten. 
+					  	Generell lässt sich sagen, dass sich die Farbe stufenweise von Grün nach Rot verändert je schlechter die Verbindung wird. 
+					  	Auch die Transparenz der Linien wird mit einer schlechteren Verbindung höher, so dass sehr schlechte und damit für das Netz kaum relevate Verbindungen weniger deutlich sind.
+					</div>
+		  		</div>    		
+		  	</div>
+	  	</div>
+	</div>
+	
+	
+	<div class="modal fade" id="modal-stats" tabindex="-1" role="dialog" aria-labelledby="modal-stats">
+		<div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Statistiken</h4>
+	      		</div>
+		  		<div class="modal-body">			  					  					  		
+			  		<div id="target-highcharts-nodes" class="container-highcharts">
+			  		</div>
+			  		
+			  		<div id="target-highcharts-firmware" class="container-highcharts">
+			  		</div>
+			  		
+			  		<div>
+				  		<br>
+				  		* Durch den Wechsel zu Gluon ist es vereinzelt zu einer Doppelung der Datenbankeinträge gekommen.
+				  		Die bereinigten Knoten beinhalten ausschließlich Geräte, die innerhalb der letzen 14 Tage online waren.
+			  		</div>
+	      		</div>
+		  	</div>
+	  	</div>
+	</div>
+
+
+	<div id="header">
+		<div id="header__right" class="hidden-xs">
+			<div>Knoten online: <span class="target-nodes-online"><i class="fa fa-spinner fa-pulse"></i></span></div>
+			<div>Clients online: <span class="target-clients-online"></span></div>
+		</div>
+		
+		<div id="header__left">
+			<div id="logo">
+				<img src="img/vfnnrw.svg">
+			</div>
+		
+			<h1>
+				<a href="http://vfn-nrw.de" target="_blank">
+					Verbund freier Netzwerke NRW
+				</a>
+			</h1>
+			
+			<h2>
+				<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					<i class="fa fa-bookmark"></i>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="http://freifunk.nrw" target="_blank">Kostenlose Subdomains unter freifunk.nrw</a></li>
+					<li><a href="http://pad.freifunk.net" target="_blank">Etherpad Lite</a></li>
+					<li><a href="http://bug.freifunk.net" target="_blank">Bugtracker und Ticketsystem</a></li>
+					<li><a href="http://prgenerator.vfn-nrw.de" target="_blank">Generator für Werbematerial</a></li>
+				</ul>
+				
+				<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-info">
+					<i class="fa fa-info-circle"></i>
+				</button>
+				
+				Nodemap 2.0 | Knotenkarte
+			</h2>
+		</div>
+	</div>
+
+	<div id="vfnnrw-map" class="map">
+		<div id="popup"></div>
+	</div>
+	
+	<div id="controls">
+		<div id="controls__toggle">
+			<div class="wrapper">
+				<i class="fa fa-chevron-circle-right"></i>
+			</div>
+		</div>
+		<div class="content">
+			<div class="wrapper-scroll">
+
+				<div class="visible-xs">Knoten online: <span class="target-nodes-online"></span></div>
+				<div class="visible-xs">Clients online: <span class="target-clients-online"></span></div>
+					
+				<hr class="visible-xs">
+				
+				<div id="trigger-stats" class="trigger">
+					<i class="fa fa-bar-chart"></i> Statistiken
+				</div>
+				
+				<hr>
+				
+				<div id="trigger-locate" class="trigger">
+					<i class="fa fa-location-arrow"></i> Eigene Position anzeigen
+				</div>
+				
+				<hr>
+				
+				<div id="cursor-position">					
+					<div class="info">
+						Zum fixieren oder freigeben der aktuellen Cursorposition die Taste "L" auf der Tastatur drücken
+					</div>
+					
+					<div id="lat">B: <span id="target-lat"></span></div>
+					<div id="lon">L: <span id="target-lon"></span></div>
+					
+					<div id="locked">
+						<i class="fa fa-unlock"></i> Koordinaten frei
+					</div>
+				</div>
+				
+				<hr>
+				
+				<div id="change-layers">
+					<div class="info">
+						Kartentyp wechseln
+					</div>
+					<div id="trigger-layer-osm" class="trigger active">
+						<i id="icon-osm" class="fa fa-eye"></i> OpenStreetMap
+					</div>
+					<div id="trigger-layer-bing-satellite" class="trigger">
+						<i id="icon-bing-satellite" class="fa fa-eye-slash"></i> BingMaps: Satellit 
+					</div>
+					<div id="trigger-layer-bing-hybrid" class="trigger">
+						<i id="icon-bing-hybrid" class="fa fa-eye-slash"></i> BingMaps: Hybrid
+					</div>
+					<div id="trigger-layer-bing-road" class="trigger">
+						<i id="icon-bing-road" class="fa fa-eye-slash"></i> BingMaps: Straßen
+					</div>
+					<div id="trigger-layer-stamen-watercolor" class="trigger">
+						<i id="icon-stamen-watercolor" class="fa fa-eye-slash"></i> Stamen: Wasserfarbe
+					</div>
+					<div id="trigger-layer-stamen-toner" class="trigger">
+						<i id="icon-stamen-toner" class="fa fa-eye-slash"></i> Stamen: Toner
+					</div>
+					<div id="trigger-layer-mapquest-road" class="trigger">
+						<i id="icon-mapquest-road" class="fa fa-eye-slash"></i> MapQuest: Straßen
+					</div>
+				</div>
+				
+				<hr>
+				
+				<div id="trigger-dimmer" class="trigger">
+					<i class="fa fa-adjust"></i> Karte abdunkeln
+				</div>
+				<div id="trigger-range" class="trigger">
+					<i class="fa fa-dot-circle-o"></i> Hyp. Reichweite
+				</div>
+				
+				<hr>
+				
+				<div id="trigger-nodes-new" class="trigger">
+					<i class="fa fa-star"></i> Neue Knoten hervorheben
+				</div>
+				<div id="trigger-nodes-lost" class="trigger">
+					<i class="fa fa-warning"></i> "Verlorene" Knoten
+				</div>
+				<div id="trigger-nodes-text-clients" class="trigger">
+					<i class="fa fa-tags"></i> Clientanzahl einblenden
+				</div>
+				<div id="trigger-nodes-text-gatewayquality" class="trigger">
+					<i class="fa fa-tags"></i> Verbidungsqualität einbl.
+				</div>
+				<div id="trigger-nodes-text-name" class="trigger">
+					<i class="fa fa-tags"></i> Namen einblenden
+				</div>
+				<div id="trigger-nodes-text-firmware" class="trigger">
+					<i class="fa fa-tags"></i> Firmware einblenden
+				</div>
+				
+				<hr>
+				
+				<div id="address-search">
+					<div class="info">
+						Koordinaten zu Adresse finden.<br>
+						Es wird der Service von Google benutzt.
+					</div>
+					<form id="form-address">
+						<input type="text" class="form-control" id="input-address">
+					</form>
+					<div id="trigger-address-search" class="trigger">
+						zu Adresse springen
+					</div>
+				</div>
+				
+				<hr>
+				
+				<div id="trigger-refresh" class="trigger">
+					<i class="fa fa-refresh"></i> Daten aktualisieren
+				</div>
+				<div id="trigger-autorefresh" class="trigger">
+					<i class="fa fa-spinner"></i> Automatisch aktualisieren
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	<div id="nodes">
+		<div id="nodes__toggle">
+			<div class="wrapper">
+				<i class="fa fa-chevron-circle-left"></i>
+			</div>
+		</div>
+		<div class="content">
+			<div class="wrapper-scroll">
+				<div class="info-content trigger" id="trigger-locate-node">
+					<i class="fa fa-crosshairs"></i> zum Knoten zoomen<br><br>
+				</div>
+				<div id="target-content">
+					<div class="info-content">
+						Kein Knoten ausgewählt.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JavaScript -->
+	<script>
+		// Bind Maps Key
+		var key_bing = 'AvZ1i61LKt1duwYkUhNph0bI2GR1iul54hl6Pyz3VDqKWYT1d3KWnihQ-IJqAbEW';		
+	</script>
+    <script src="js/all.js"></script>
+
+</body>
+</html>
