@@ -1324,7 +1324,23 @@ $(document).ready( function()
 	}
 	
 	
-	// Karte manuell aktualisieren
+	// Hinweis unter Button anzeigen, falls Browser inkompatibel.
+	if ($.browser.msie || $.browser.mozilla) {
+		var bad_browser_info =
+				'<div class="info">'
+			+		'Sie verwenden entweder Firefox oder Internet Explorer. '
+			+		'Leider sind diese Browser nicht in der Lage die Kartenlayer korrekt zu aktualisieren. '
+			+		'Daher sind die Funktionen zu Aktualisierung nur eingeschränkt nutzbar.'
+			+	'</div>';
+			
+		$(bad_browser_info).insertAfter('#trigger-refresh');
+
+		$('#trigger-autorefresh').remove();
+		adjust_layout();
+	}
+	
+	
+	// Karte manuell aktualisieren. 
 	$('#trigger-refresh').click( function()
 	{ 
 		if (debug_on) {
@@ -1334,8 +1350,8 @@ $(document).ready( function()
 	});
 	
 	
-	// Karte automatisch 1 mal pro Minute aktualisieren
-	var map_autorefresh_on = false;
+	// Karte automatisch 1 mal pro Minute aktualisieren.
+	var map_autorefresh_on = false;	
 	$('#trigger-autorefresh').click( function() 
 	{ 
 		if (map_autorefresh_on == false) { 
@@ -1373,6 +1389,12 @@ $(document).ready( function()
 	// Funktion kann nicht ausgelagert werden, da sonst kein Zugriff auf "map" mehr möglich ist.
 	function map_refresh()
 	{	
+		// Prüfen, ob es sich um Firefox oder IE handelt und dann die komplette Anwendung neu laden.
+		if ($.browser.msie || $.browser.mozilla) {
+			window.location.reload();
+			return false;
+		}
+		
 		// Knoten
 		source_nodes.clear(true);
 		$.ajax(

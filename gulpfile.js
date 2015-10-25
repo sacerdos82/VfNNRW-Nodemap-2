@@ -17,6 +17,7 @@ elixir(function(mix)
 	    'libs/sweetalert.min.js',
 	    'libs/ol-3.10.1.js',
 	    'libs/jquery.slimscroll.js',
+	    'libs/jquery.browser.min.js',
 	    'libs/highcharts.js',
 	    'libs/highcharts-drilldown.js',
 	    
