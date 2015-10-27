@@ -55,6 +55,14 @@ function activate_trigger_controls()
 				}, 'slow');
 				
 				$(this).find('.wrapper').html('<i class="fa fa-chevron-circle-right"></i>');
+				
+				// Tooltips erzeugen
+				if (! $.browser.mobile) {
+					$('#controls__toggle').find('.wrapper .fa-chevron-circle-right').attr('data-toggle', 'tooltip');
+					$('#controls__toggle').find('.wrapper .fa-chevron-circle-right').attr('data-placement', 'right');
+					$('#controls__toggle').find('.wrapper .fa-chevron-circle-right').attr('title', 'Kontrollen öffnen');
+					$('[data-toggle="tooltip"]').tooltip();
+				}
 			} else {
 				controls_open = true;
 				
@@ -79,4 +87,13 @@ function activate_trigger_controls()
 				);
 			}
 		});
+		
+	
+	// Tooltips erzeugen
+	if (! $.browser.mobile) {
+		$('#controls__toggle').find('.wrapper .fa-chevron-circle-right').attr('data-toggle', 'tooltip');
+		$('#controls__toggle').find('.wrapper .fa-chevron-circle-right').attr('data-placement', 'right');
+		$('#controls__toggle').find('.wrapper .fa-chevron-circle-right').attr('title', 'Kontrollen öffnen');
+		$('[data-toggle="tooltip"]').tooltip();
+	}
 }
